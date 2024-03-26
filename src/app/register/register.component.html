@@ -1,0 +1,113 @@
+<form [formGroup]="formData" (ngSubmit)="registerSubmit()" class="border p-3 rounded-3">
+    <div class="row bg-primary mb-3">
+        <div class="col text-center p-2 mb-3">
+            <span class="fs-3">Register</span>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" 
+            formControlName="firstName">
+            <div class="form-text text-danger" *ngIf="Firstname.errors?.required &&  (Firstname.touched && !Firstname.valid)">
+                First Name is required
+            </div>
+            <div class="form-text text-danger" *ngIf="Firstname.errors?.minlength ">
+                First Name is too short
+            </div>
+            <div class="form-text text-danger" *ngIf="Firstname.errors?.pattern ">
+                First Name cannot contain numbers
+            </div>
+        </div>
+        <div class="col">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" 
+            formControlName="lastName">
+            <div class="form-text text-danger" *ngIf="LastName.errors?.required &&  (LastName.touched && !LastName.valid)">
+                Last Name is required
+            </div>
+            <div class="form-text text-danger" *ngIf="LastName.errors?.minlength ">
+                Last Name is too short
+            </div>
+            <div class="form-text text-danger" *ngIf="LastName.errors?.pattern ">
+                Last Name cannot contain numbers
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control"
+            formControlName="email">
+            <div class="form-text text-danger" *ngIf="Email.errors?.required && Email.touched">
+                Email is reqired
+            </div>
+            <div class="form-text text-danger" *ngIf="Email.errors?.email">
+                Email is Invalid
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="mobilenumber" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="mobilenumber"
+            formControlName="mobileNumber">
+            <div class="form-text text-danger" *ngIf="MobileNumber.errors?.required && MobileNumber.touched">
+                Mobile Number is required 
+            </div>
+            <div class="form-text text-danger" *ngIf="MobileNumber.errors?.minlength">
+                Mobile Number is too short
+            </div>
+            <div class="form-text text-danger" *ngIf="MobileNumber.errors?.maxlength">
+                Mobile Number is too large
+            </div>
+            <div class="form-text text-danger" *ngIf="MobileNumber.errors?.pattern">
+                Mobile Number is Invalid
+            </div>
+        </div>
+        <div class="col">
+            <div class="m-1">Gender</div>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" value="m" id="male"
+                formControlName="gender">
+                <label for="male" class="form-check-label">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" value="f" id="female"
+                formControlName="gender">
+                <label for="female" class="form-check-label">Female</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password"
+            formControlName="password">
+            <div class="form-text text-danger" *ngIf="Password.errors?.required && Password.touched">
+                Password is required
+            </div>
+            <div class="form-text text-danger" *ngIf="Password.errors?.minlength">
+                Password is should be in a range of atleast 6 and atmost 15
+            </div>
+            <div class="form-text text-danger" *ngIf="Password.errors?.maxlength">
+                Password is should be in a range of atleast 6 and atmost 15
+            </div>
+        </div>
+        <div class="col">
+            <label for="Rpassword" class="form-label">Repeat Password</label>
+            <input type="password" class="form-control" id="Rpassword"
+            formControlName="repeatPassword">
+            <div class="form-text text-danger" [ngStyle]="{'display':repeatepassword} ">
+                Repeate password is Invalid
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-6 offset-3">
+            <div class="d-grid">
+                <button type="submit" [disabled]="formData.invalid && check" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
